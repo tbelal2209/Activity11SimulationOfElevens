@@ -116,8 +116,18 @@ public class ThirteensBoard extends Board {
 	 * @return true if a legal play was found (and made); false othewise.
 	 */
 	public boolean playIfPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 11 *** */
-		return false; // REPLACE !
+		List<Integer> cIndexes = cardIndexes();
+		if(containsPairSum13(cardIndexes())){
+			playPairSum13IfPossible();
+			return true;
+		}
+		else if(containsKing(cardIndexes())){
+			playKingIfPossible();
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	/**
@@ -127,8 +137,13 @@ public class ThirteensBoard extends Board {
 	 * @return true if an 13-pair play was found (and made); false othewise.
 	 */
 	private boolean playPairSum13IfPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 11 *** */
-		return false; // REPLACE !
+		List<Integer> cIndexes = cardIndexes();
+		if (containsPairSum13(cIndexes) == true || playPairSum13IfPossible() ) {
+			replaceSelectedCards(cIndexes);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -139,6 +154,13 @@ public class ThirteensBoard extends Board {
 	 */
 	private boolean playKingIfPossible() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 11 *** */
-		return false; // REPLACE !
+		List<Integer> cIndexes = cardIndexes();
+		if(containsKing(cIndexes)|| playKingIfPossible()) {
+			replaceSelectedCards(cIndexes);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }
